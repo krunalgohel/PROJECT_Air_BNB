@@ -1,0 +1,104 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h3 class="mb-3 text-center text-dark">
+          Edit listing for ID: <span class="fw-bold"><%=editListing._id%></span>
+        </h3>
+        <form
+          action="/listings/<%=editListing._id%>?_method=PUT"
+          method="POST"
+          novalidate
+          class="needs-validation"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <label for="title" class="form-label">Enter Title</label>
+            <input
+              type="text"
+              name="listing[title]"
+              placeholder="enter title"
+              value="<%=editListing.title%>"
+              class="form-control"
+              required
+            />
+            <div class="valid-feedback">Title Looks Good!</div>
+            <div class="invalid-feedback">Title Should be valid!</div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label"
+              >Enter Description</label
+            >
+            <textarea
+              name="listing[description]"
+              placeholder="enter description"
+              class="form-control"
+              required
+            >
+                    <%=editListing.description%>
+                </textarea
+            >
+            <div class="valid-feedback">Description Looks Good!</div>
+            <div class="invalid-feedback">Description Should be valid!</div>
+          </div>
+          <div class="mb-3">
+            <p>Original Image</p>
+            <img src="<%=originalImageUrl %>" alt="" />
+          </div>
+          <div class="mb-3">
+            <label for="url" class="form-label">Upload New Image</label>
+            <input
+              type="file"
+              id="url"
+              name="listing[image]"
+              class="form-control"
+            />
+          </div>
+          <div class="row">
+            <div class="mb-3 col-md-4">
+              <label for="price" class="form-label">Enter Price</label>
+              <input
+                type="number"
+                name="listing[price]"
+                placeholder="enter price"
+                value="<%=editListing.price%>"
+                class="form-control"
+                required
+              />
+              <div class="valid-feedback">Price Looks Good!</div>
+              <div class="invalid-feedback">Price Should be valid!</div>
+            </div>
+            <div class="mb-3 col-md-8">
+              <label for="location" class="form-label">Enter Location</label>
+              <input
+                type="text"
+                name="listing[location]"
+                placeholder="enter location"
+                value="<%=editListing.location%>"
+                class="form-control"
+                required
+              />
+              <div class="valid-feedback">Location Looks Good!</div>
+              <div class="invalid-feedback">Location Should be valid!</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="country" class="form-label">Enter Country</label>
+            <input
+              type="text"
+              name="listing[country]"
+              placeholder="enter country"
+              value="<%=editListing.country%>"
+              class="form-control"
+              required
+            />
+            <div class="valid-feedback">Country Looks Good!</div>
+            <div class="invalid-feedback">Country Should be valid!</div>
+          </div>
+          <button class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

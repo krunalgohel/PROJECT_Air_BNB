@@ -1,0 +1,161 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+  <style>
+    #filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter {
+      text-align: center;
+      margin-right: 2rem;
+      opacity: 0.7;
+    }
+    .filter:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+    .filter i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .filter p {
+      font-size: 0.75rem;
+      margin-bottom: 0px;
+    }
+    .form-switch-box {
+      border: 1px solid black;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .form-switch-box label {
+      font-size: 0.75rem;
+    }
+    .tax-info {
+      display: none;
+      margin-left: 1rem;
+    }
+  </style>
+  <div class="container">
+    <div class="my-4">
+      <div id="filters">
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-fire"></i>
+          </div>
+          <p>Trending</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-bed"></i>
+          </div>
+          <p>Rooms</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-city"></i>
+          </div>
+          <p>Iconic Cities</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-mountain"></i>
+          </div>
+          <p>Mountain</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-chess-rook"></i>
+          </div>
+          <p>Castles</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-person-swimming"></i>
+          </div>
+          <p>Amazing Pools</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-campground"></i>
+          </div>
+          <p>Campign</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-cow"></i>
+          </div>
+          <p>Farms</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-snowflake"></i>
+          </div>
+          <p>Arctic</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-ship"></i>
+          </div>
+          <p>Boats</p>
+        </div>
+        <div class="filter">
+          <div>
+            <i class="fa-solid fa-igloo"></i>
+          </div>
+          <p>Domes</p>
+        </div>
+        <div class="form-switch-box ms-auto">
+          <div class="form-check-reverse form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="tax-switch"
+            />
+            <label class="form-check-label" for="tax-switch"
+              >Display Total After Taxes</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-sm-1 mt-3">
+      <% for(let data of listData) { %>
+      <a href="/listings/<%=data._id%>" class="listing-link">
+        <div class="card listing-card">
+          <img
+            src="<%=data.image.url%>"
+            class="card-img-top"
+            alt="listing_image"
+          />
+          <div class="card-img-overlay"></div>
+          <div class="card-body">
+            <h4 class="mb-0"><b><%=data.title%></b></h4>
+            <p class="card-text">
+              &#8377;<%= data.price.toLocaleString("en-IN") %> / per night
+              <i><span class="tax-info">+18% GST</span></i>
+            </p>
+          </div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+  </div>
+</body>
+
+<script>
+  let taxSwitch = document.querySelector('#tax-switch');
+  taxSwitch.addEventListener('click', () => {
+    let taxInfo = document.querySelectorAll('.tax-info');
+    for (const element of taxInfo) {
+      if (element.style.display != 'inline') {
+        element.style.display = 'inline';
+      } else {
+        element.style.display = 'none';
+      }
+    }
+  });
+</script>
